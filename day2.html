@@ -34,5 +34,90 @@
  <marquee direction="right" scrollamount="5">
         This is scrolling text from left to right!
     </marquee>
+    <h2>Contact Us</h2>
+    <form action="#" method="post">
+      
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+        
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br><br>
+
+     
+        <label>Interests:</label><br>
+        <input type="checkbox" id="coding" name="interest" value="Coding">
+        <label for="coding">Coding</label><br>
+        <input type="checkbox" id="music" name="interest" value="Music">
+        <label for="music">Music</label><br>
+        <input type="checkbox" id="sports" name="interest" value="Sports">
+        <label for="sports">Sports</label><br><br>
+
+    
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" cols="30" placeholder="Enter your message"></textarea><br><br>
+
+      
+        <input type="submit" value="Submit">
+    </form>
+     <h2>Student Registration Form</h2>
+    <form action="#" method="post" enctype="multipart/form-data">
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+    
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" min="1" max="100" placeholder="Enter your age" required><br><br>
+
+        
+        <label for="website">Website:</label><br>
+        <input type="url" id="website" name="website" placeholder="Enter your website URL"><br><br>
+
+        
+        <label for="file">Upload File:</label><br>
+        <input type="file" id="file" name="file"><br><br>
+
+        
+        <label for="date">Choose a Date:</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+
+        
+        <label for="time">Choose a Time:</label><br>
+        <input type="time" id="time" name="time" required><br><br>
+
+        
+        <label for="month">Choose a Month:</label><br>
+        <input type="month" id="month" name="month" required><br><br>
+
+        
+        <label for="week">Choose a Week:</label><br>
+        <input type="week" id="week" name="week" required><br><br>
+
+
+        <label for="courses">Select Course:</label><br>
+        <select id="courses" name="courses" required>
+            <option value="">--Select a course--</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+        </select><br><br>
+
+       
+        <input type="reset" value="Reset Form">
+        <input type="submit" value="Submit Form">
+    </form>
+    
 </body>
 </html>
