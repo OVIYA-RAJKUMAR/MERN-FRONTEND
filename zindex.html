@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-index Boxes</title>
+
+    <link rel="stylesheet" href="zindex.css">
+</head>
+<body>
+
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+<h1>The z-index Property</h1>
+
+<div class="wrapper">
+  <div class="yes1">1</div>
+  <div class="yes2">2</div>
+  <div class="yes3">3</div>
+</div>
+<h2>Overflow: Visible (default)</h2>
+    <div class="box visible">
+        This text will go outside the box if it's too long. This text will go outside the box if it's too long.
+        This text will go outside the box if it's too long.
+    </div>
+
+    <h2>Overflow: Hidden</h2>
+    <div class="box hidden">
+        This text will be clipped, and the extra content will be hidden. This text will be clipped, and the extra content will be hidden.
+    </div>
+
+    <h2>Overflow: Scroll</h2>
+    <div class="box scroll">
+        This box will always show scrollbars even if not needed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+
+    <h2>Overflow: Auto</h2>
+    <div class="box auto">
+        This box will show scrollbars only when needed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>4
+</body>
+</html>

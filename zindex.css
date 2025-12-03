@@ -1,0 +1,86 @@
+.box {
+    width: 200px;
+    height: 150px;
+    margin: 20px;
+    position: relative;  
+}
+.box1 {
+    background-color: red;
+    z-index: 3;
+    border: 5px solid blanchedalmond;
+}
+
+.box2 {
+    background-color:blueviolet;
+    z-index: 2;
+    border: 5px solid blanchedalmond;
+}
+
+.box3 {
+    background-color:chartreuse;
+    z-index: 1;
+   border: 5px solid blanchedalmond;
+}
+.wrapper {
+position: relative;
+}
+.yes1 {
+position: relative;
+z-index: 1;
+background:hotpink;
+border: solid;
+height: 100px;
+margin: 50px;
+}
+.yes2 {
+position: absolute;
+z-index: 2;
+background: pink;
+width: 20%;
+border: solid;
+left: 65%;
+top: -25px;
+height: 120px;
+opacity: 0.9;
+}
+.yes3 {
+position: absolute;
+z-index: 3;
+background: cyan;
+border: solid;
+width: 70%;
+left: 40px;
+top: 60px;
+}
+body {
+    font-family: Arial;
+}
+
+.box {
+    width: 200px;
+    height: 80px;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Overflow types */
+.visible {
+    overflow: visible;
+    background-color: aqua;
+}
+
+.hidden {
+    overflow: hidden;
+    background-color: khaki;
+}
+
+.scroll {
+    overflow: scroll;
+    background-color: orangered;
+}
+
+.auto {
+    overflow: auto;
+    background-color: orchid;
+}
