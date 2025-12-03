@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Center color-changing box */
+        .center-box {
+            width: 120px;
+            height: 120px;
+            border: 5px solid black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: red;
+            animation: colorChange 3s linear infinite;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: red; }
+            25% { background-color: blue; }
+            50% { background-color: green; }
+            75% { background-color: yellow; }
+            100% { background-color: red; }
+        }
+
+        /* Rotating and bouncing box */
+        .moving-box {
+            width: 100px;
+            height: 100px;
+            border: 5px solid purple;
+            background: violet;
+            position: absolute;
+            animation: moveBox 6s linear infinite, rotateBox 2s linear infinite;
+        }
+
+        @keyframes moveBox {
+            0% { top: 0; left: 0; }
+            25% { top: 0; left: calc(100vw - 120px); }
+            50% { top: calc(100vh - 120px); left: calc(100vw - 120px); }
+            75% { top: calc(100vh - 120px); left: 0; }
+            100% { top: 0; left: 0; }
+        }
+
+        @keyframes rotateBox {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Emojis in the center */
+        .emoji-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -180%);
+            display: flex;
+            gap: 40px;
+        }
+
+        .emoji {
+            font-size: 60px;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        .emoji.smile { animation-delay: 0.5s; }
+
+        @keyframes bounce {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Center color-changing box -->
+    <div class="center-box"></div>
+
+    <!-- Bouncing + Rotating box -->
+    <div class="moving-box"></div>
+
+    <!-- Center emojis -->
+    <div class="emoji-container">
+        <div class="emoji heart">❤️</div>
+        <div class="emoji smile">🙂</div>
+    </div>
+
+</body>
+</html>

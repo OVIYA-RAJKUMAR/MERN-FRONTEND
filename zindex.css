@@ -84,3 +84,44 @@ body {
     overflow: auto;
     background-color: orchid;
 }
+.big-container {
+    width: 400px;
+    height: 300px;
+    border: 3px solid black;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    height: 200px;
+    border: 3px solid black;
+
+    display: flex;              /* Enables flexbox */
+    justify-content: space-around; /* Space between items */
+    align-items: center;        /* Vertically center items */
+    background-color: #f0f0f0;
+}
+
+.prime {
+    width: 80px;
+    height: 80px;
+    background-color: tomato;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.dabba {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+.dabba div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 24px;
+}
