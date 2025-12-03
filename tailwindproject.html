@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Global Academy — Home & Login (Single File)</title>
+
+  <!-- Tailwind CDN (single-file friendly) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind config for custom colors (applies immediately) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#4f46e5', 700: '#3730a3' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* small visual tweak for the demo (keeps file single) */
+    :root { color-scheme: light dark; }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+  <!-- Main container to hold two "pages": Home and Login -->
+  <div id="app" class="min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <header class="w-full backdrop-blur bg-white/60 dark:bg-gray-900/60 border-b border-gray-200 dark:border-gray-800">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" id="brand" class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg">GA</div>
+              <div class="hidden sm:block">
+                <div class="text-lg font-semibold">Global Academy</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">World-class learning • Anywhere</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- desktop links -->
+          <div class="hidden md:flex items-center gap-6">
+            <a href="#features" class="text-sm hover:underline">Features</a>
+            <a href="#courses" class="text-sm hover:underline">Courses</a>
+            <a href="#about" class="text-sm hover:underline">About</a>
+            <button id="login-nav" class="px-4 py-2 rounded-md bg-brand-500 hover:bg-brand-700 text-white text-sm shadow">Login</button>
+            <button id="theme-toggle" title="Toggle dark / light" class="p-2 rounded-md border border-gray-200 dark:border-gray-700">
+              <span id="theme-icon" class="sr-only">Toggle theme</span>
+              <!-- Icon changes via JS -->
+              <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+          </div>
+
+          <!-- mobile menu button -->
+          <div class="md:hidden flex items-center gap-2">
+            <button id="theme-toggle-mobile" title="Toggle dark / light" class="p-2 rounded-md border border-gray-200 dark:border-gray-700">
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-11.66l-.7.7M4.04 19.96l-.7-.7M21 12h1M2 12H1m18.66 5.66l-.7-.7M4.04 4.04l-.7.7"/></svg>
+            </button>
+            <button id="mobile-open" aria-label="Open menu" class="p-2 rounded-md border border-gray-200 dark:border-gray-700">
+              <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- mobile nav panel -->
+      <div id="mobile-panel" class="hidden md:hidden border-t border-gray-100 dark:border-gray-800">
+        <div class="px-4 py-4 flex flex-col gap-3">
+          <a href="#features" class="text-sm">Features</a>
+          <a href="#courses" class="text-sm">Courses</a>
+          <a href="#about" class="text-sm">About</a>
+          <button id="login-nav-mobile" class="mt-2 px-4 py-2 rounded-md bg-brand-500 text-white">Login</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- VIEWS CONTAINER -->
+    <main class="flex-1">
+      <!-- HOME VIEW -->
+      <section id="home-view" class="home-view">
+
+        <!-- HERO -->
+        <section class="relative overflow-hidden">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pb-28">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div class="space-y-6">
+                <p class="inline-flex items-center gap-2 bg-brand-50 dark:bg-gray-800/50 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-full text-xs font-medium">International • Accredited</p>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                  Learn industry-ready skills from anywhere<br class="hidden sm:block"/> — crafted for global careers.
+                </h1>
+                <p class="max-w-xl text-gray-600 dark:text-gray-300">
+                  Global Academy brings together expert instructors, hands-on projects, and a career-ready curriculum. Responsive UI, personalized learning tracks, and community mentorship make us a top pick for learners worldwide.
+                </p>
+
+                <div class="flex flex-wrap gap-3">
+                  <button id="cta-login" class="px-5 py-3 rounded-md bg-brand-500 hover:bg-brand-700 text-white font-medium shadow">Get Started — Login</button>
+                  <a href="#courses" class="px-5 py-3 rounded-md border border-gray-200 dark:border-gray-700 text-sm">Explore courses</a>
+                </div>
+
+                <div class="mt-4 flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-teal-400 flex items-center justify-center text-white font-semibold">4.8</div>
+                    <div>
+                      <div class="font-semibold">Top Rated</div>
+                      <div class="text-xs">Over 120k students</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- hero illustration / card -->
+              <div class="relative">
+                <div class="rounded-2xl shadow-2xl p-6 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 transform hover:scale-[1.01] transition">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="text-xs text-gray-500 dark:text-gray-400">Featured program</div>
+                      <div class="text-lg font-semibold">Full-Stack AI Engineer</div>
+                    </div>
+                    <div class="text-sm text-gray-600 dark:text-gray-300">Duration: 6 months</div>
+                  </div>
+
+                  <div class="mt-4 grid grid-cols-2 gap-3">
+                    <div class="p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+                      <div class="text-xs text-gray-500 dark:text-gray-400">Projects</div>
+                      <div class="font-semibold">12+ real apps</div>
+                    </div>
+                    <div class="p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+                      <div class="text-xs text-gray-500 dark:text-gray-400">Career</div>
+                      <div class="font-semibold">Resume reviews</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6">
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Syllabus highlights</div>
+                    <ul class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-200">
+                      <li>Python & Data Structures</li>
+                      <li>ML Basics & Projects</li>
+                      <li>Web (HTML, CSS, JS)</li>
+                      <li>Deployment & APIs</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Responsive decorative panel: shows different layout on mobile -->
+                <div class="mt-4 sm:hidden text-xs text-gray-500">
+                  Note: Mobile layout stacks content for easier reading — try resizing the window.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- bottom decorative wave -->
+          <div class="pointer-events-none">
+            <svg viewBox="0 0 1200 60" class="w-full -mt-1" preserveAspectRatio="none">
+              <path d="M0 0h1200v60H0z" fill="transparent"></path>
+            </svg>
+          </div>
+        </section>
+
+        <!-- FEATURES & DETAILS (include many HTML concepts) -->
+        <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <article class="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow">
+              <h3 class="text-lg font-semibold">What you'll get</h3>
+              <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">A complete program combining theory, hands-on labs, quizzes, and capstone projects to build a portfolio.</p>
+              <ul class="mt-4 space-y-2 text-sm">
+                <li class="flex items-start gap-2"><strong class="text-brand-500 mr-2">✓</strong> 1:1 Mentorship</li>
+                <li class="flex items-start gap-2"><strong class="text-brand-500 mr-2">✓</strong> Live code reviews</li>
+                <li class="flex items-start gap-2"><strong class="text-brand-500 mr-2">✓</strong> Interview prep</li>
+              </ul>
+            </article>
+
+            <aside class="rounded-2xl p-6 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-800 shadow">
+              <h3 class="text-lg font-semibold">Technologies covered</h3>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="px-3 py-1 border rounded-full text-xs">HTML</span>
+                <span class="px-3 py-1 border rounded-full text-xs">CSS / Tailwind</span>
+                <span class="px-3 py-1 border rounded-full text-xs">JavaScript</span>
+                <span class="px-3 py-1 border rounded-full text-xs">Python</span>
+                <span class="px-3 py-1 border rounded-full text-xs">Databases</span>
+                <span class="px-3 py-1 border rounded-full text-xs">ML</span>
+              </div>
+
+              <div class="mt-4 text-sm text-gray-600 dark:text-gray-300">We teach modern toolchains and best practices used by international teams.</div>
+            </aside>
+
+            <div class="rounded-2xl p-6 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-800 shadow">
+              <h3 class="text-lg font-semibold">Student success</h3>
+              <dl class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <dt class="text-xs text-gray-500">Avg. salary increase</dt>
+                  <dd class="font-semibold">₹7.2 LPA</dd>
+                </div>
+                <div>
+                  <dt class="text-xs text-gray-500">Placement rate</dt>
+                  <dd class="font-semibold">82%</dd>
+                </div>
+                <div>
+                  <dt class="text-xs text-gray-500">Projects</dt>
+                  <dd class="font-semibold">1500+</dd>
+                </div>
+                <div>
+                  <dt class="text-xs text-gray-500">Languages</dt>
+                  <dd class="font-semibold">Multi</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <!-- COURSES GRID -->
+        <section id="courses" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          <h2 class="text-2xl font-bold mb-6">Popular Programs</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- card repeated — example -->
+            <div class="p-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">Front-end Web Dev</h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">HTML, CSS, JS, React</p>
+                </div>
+                <div class="text-sm font-medium">6 mo</div>
+              </div>
+              <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Build responsive websites and progressive web apps used by global teams.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-sm">₹30,000</div>
+                <button class="text-sm px-3 py-2 rounded bg-brand-50 text-brand-700">Apply</button>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">Data Science</h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Pandas, ML & Visualization</p>
+                </div>
+                <div class="text-sm font-medium">8 mo</div>
+              </div>
+              <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">End-to-end data workflows and model deployment.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-sm">₹45,000</div>
+                <button class="text-sm px-3 py-2 rounded bg-brand-50 text-brand-700">Apply</button>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">AI Engineer</h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Deep learning, Production</p>
+                </div>
+                <div class="text-sm font-medium">10 mo</div>
+              </div>
+              <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Build scalable AI services for real-world applications.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-sm">₹75,000</div>
+                <button class="text-sm px-3 py-2 rounded bg-brand-50 text-brand-700">Apply</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT + FOOTER -->
+        <section id="about" class="bg-gray-50 dark:bg-gray-800/30 py-10">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 class="text-lg font-semibold">About Global Academy</h3>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">We design programs with industry partners, keeping accessibility and global standards in mind.</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Contact</h3>
+                <address class="mt-2 not-italic text-sm">
+                  Email: <a href="mailto:hello@globalacademy.example" class="underline">hello@globalacademy.example</a><br/>
+                  Phone: +91 98765 43210
+                </address>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Legal</h3>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Privacy • Terms • Accessibility</p>
+              </div>
+            </div>
+
+            <footer class="mt-8 border-t border-gray-200 dark:border-gray-800 pt-6">
+              <div class="flex items-center justify-between">
+                <div class="text-sm">&copy; <span id="year"></span> Global Academy. All rights reserved.</div>
+                <div class="text-sm">Built with ♥ for learners worldwide</div>
+              </div>
+            </footer>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- LOGIN VIEW (separate 'page' inside same file) -->
+      <section id="login-view" class="hidden min-h-[60vh] py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+            <!-- left: info -->
+            <div class="p-8">
+              <div class="mb-6">
+                <a href="#" id="brand2" class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 flex items-center justify-center text-white font-bold">GA</div>
+                  <div class="hidden sm:block">
+                    <div class="text-lg font-semibold">Global Academy</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Secure login</div>
+                  </div>
+                </a>
+              </div>
+
+              <h2 class="text-2xl font-bold">Welcome back</h2>
+              <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">Sign in to continue to your courses, projects, and community.</p>
+
+              <dl class="mt-6 text-sm space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="text-brand-500 font-bold">•</div>
+                  <div>Access your enrolled courses & progress.</div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="text-brand-500 font-bold">•</div>
+                  <div>Save projects and get feedback from mentors.</div>
+                </div>
+              </dl>
+
+              <div class="mt-6 text-xs text-gray-500">No account? <a href="#" id="signup-link" class="underline">Create one</a></div>
+            </div>
+
+            <!-- right: login form -->
+            <div class="p-8 bg-gray-50 dark:bg-gray-900/60">
+              <form id="login-form" class="space-y-4" novalidate>
+                <div>
+                  <label for="email" class="block text-sm font-medium">Email</label>
+                  <input id="email" name="email" type="email" required placeholder="you@example.com" class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                </div>
+
+                <div>
+                  <label for="password" class="block text-sm font-medium">Password</label>
+                  <div class="relative mt-1">
+                    <input id="password" name="password" type="password" required placeholder="Enter your password" class="block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                    <button type="button" id="pw-toggle" class="absolute right-2 top-2 text-sm text-gray-500">Show</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium">Phone / Mobile (optional)</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium">Select courses you're interested in</label>
+                  <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-40 overflow-auto border border-gray-100 dark:border-gray-700 rounded p-2 bg-white dark:bg-gray-800">
+                    <!-- Many options as checkboxes (user asked for 'n number of courses') -->
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="frontend" /> Front-end Dev</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="backend" /> Back-end Dev</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="data" /> Data Science</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="ai" /> AI & ML</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="security" /> Cyber Security</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="cloud" /> Cloud Engineering</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="devops" /> DevOps</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="mobile" /> Mobile Apps</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="design" /> UI/UX Design</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="blockchain" /> Blockchain</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="iot" /> IoT</label>
+                    <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="courses" value="robotics" /> Robotics</label>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="remember" /> <span>Remember me</span>
+                  </label>
+                  <a href="#" class="text-sm underline">Forgot?</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <button type="submit" class="px-4 py-2 rounded-md bg-brand-500 hover:bg-brand-700 text-white">Login securely</button>
+                  <button id="back-home" type="button" class="px-4 py-2 rounded-md border border-gray-200 dark:border-gray-700">Back to Home</button>
+                </div>
+
+                <div id="login-feedback" class="text-sm text-red-500 hidden"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+<script>
+  // small helpers & initialization
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Elements
+  const mobileOpen = document.getElementById('mobile-open');
+  const mobilePanel = document.getElementById('mobile-panel');
+  const loginNav = document.getElementById('login-nav');
+  const loginNavMobile = document.getElementById('login-nav-mobile');
+  const ctaLogin = document.getElementById('cta-login');
+  const loginNavBtn = [loginNav, loginNavMobile, document.getElementById('cta-login'), document.getElementById('login-nav')];
+  const homeView = document.getElementById('home-view');
+  const loginView = document.getElementById('login-view');
+  const loginBtn = document.getElementById('login-nav');
+  const loginNavMobileBtn = document.getElementById('login-nav-mobile');
+  const loginForm = document.getElementById('login-form');
+  const pwToggle = document.getElementById('pw-toggle');
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+  const mobileOpenBtn = document.getElementById('mobile-open');
+  const mobilePanelEl = document.getElementById('mobile-panel');
+
+  // Mobile menu toggle
+  mobileOpenBtn?.addEventListener('click', () => {
+    mobilePanelEl.classList.toggle('hidden');
+  });
+
+  // Navigation: show login view
+  function showLogin() {
+    homeView.classList.add('hidden');
+    loginView.classList.remove('hidden');
+    window.location.hash = '#login';
+    // scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function showHome() {
+    loginView.classList.add('hidden');
+    homeView.classList.remove('hidden');
+    window.location.hash = '#home';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Attach events to any login navigation buttons
+  document.querySelectorAll('#login-nav, #login-nav-mobile, #cta-login').forEach(btn=>{
+    btn?.addEventListener('click', (e)=> { e.preventDefault(); showLogin(); });
+  });
+
+  document.getElementById('back-home')?.addEventListener('click', ()=> showHome());
+  document.getElementById('brand')?.addEventListener('click', (e)=>{ e.preventDefault(); showHome(); });
+
+  // Password toggle
+  pwToggle?.addEventListener('click', () => {
+    const pw = document.getElementById('password');
+    if (!pw) return;
+    if (pw.type === 'password') { pw.type = 'text'; pwToggle.textContent = 'Hide'; }
+    else { pw.type = 'password'; pwToggle.textContent = 'Show'; }
+  });
+
+  // simples login validation (demo)
+  loginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = loginForm.email.value.trim();
+    const password = loginForm.password.value;
+    const feedback = document.getElementById('login-feedback');
+
+    if (!email || !password) {
+      feedback.textContent = 'Please enter both email and password.';
+      feedback.classList.remove('hidden');
+      return;
+    }
+    // Very basic email pattern check
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      feedback.textContent = 'Please enter a valid email address.';
+      feedback.classList.remove('hidden');
+      return;
+    }
+    feedback.classList.add('hidden');
+
+    // gather courses checked
+    const courses = Array.from(loginForm.querySelectorAll('input[name="courses"]:checked')).map(i=>i.value);
+    // For demo, we just show a friendly message — replace with real auth calls
+    alert('Logged in (demo)\\nEmail: ' + email + '\\nCourses selected: ' + (courses.length? courses.join(', '): 'None'));
+    // After login, navigate home or dashboard — here we go home
+    showHome();
+  });
+
+  // Dark/light mode toggle with persistence
+  function setDarkMode(isDark) {
+    const html = document.documentElement;
+    if (isDark) html.classList.add('dark');
+    else html.classList.remove('dark');
+    localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+  }
+  // initialize from system or local storage
+  (function initTheme(){
+    const saved = localStorage.getItem('site-theme');
+    if (saved) setDarkMode(saved === 'dark');
+    else {
+      // respect system preference
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
+  })();
+
+  themeToggle?.addEventListener('click', ()=> {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+  });
+  themeToggleMobile?.addEventListener('click', ()=> {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+  });
+
+  // handle hash-based routing on load
+  (function routeOnLoad(){
+    if (location.hash === '#login') showLogin();
+    else showHome();
+  })();
+
+  // Accessibility: close mobile panel if clicked outside (small improvement)
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!mobilePanelEl.contains(target) && !mobileOpenBtn.contains(target)) {
+      if (!mobilePanelEl.classList.contains('hidden')) {
+        mobilePanelEl.classList.add('hidden');
+      }
+    }
+  });
+
+  // Add small responsive hint: toggle text when resized (demonstrates behavior difference)
+  let resizeTimeout = null;
+  function onResize() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(()=> {
+      if (window.innerWidth < 640) {
+        // mobile hint shown inside hero (already present)
+      } else {
+        // desktop
+      }
+    }, 150);
+  }
+  window.addEventListener('resize', onResize);
+
+</script>
+</body>
+</html>
